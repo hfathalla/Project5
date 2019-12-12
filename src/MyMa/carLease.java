@@ -1,20 +1,31 @@
 package MyMa;
 
-public abstract class carLease {
+public abstract class carLease<Create, constructor> {
 
     /*
         Create 2 string   (name , whichModel)
 
         7 int (age ,salary , totalCost , downPayment , termofLease , leaseFee , depractionAmount )
 
-        3  double (taxRate , moneyFactor , interestAmount)
+        3  double (taxRate , moneyFactor,interestAmount  )
 
      */
+    public String name;
+    public String whichModel;
+    public int age;
+    public int salary;
+    public int totalCost;
+    public int downPayment;
+    public int termofLease;
+    public int leaseFee;
+    public int depractionAmount;
+    public double taxRate;
+    public double moneyFactor;
+    public double interestAmount;
 
 
-    /*
-
-        Create a constructor
+/*
+    Create a constructor
 
         All the variables are should be as a parameter except (depractionAmount and interestAmount)
 
@@ -24,6 +35,22 @@ public abstract class carLease {
 
      */
 
+    public carLease(String name, String whichModel, int age, int salary, int totalCost, int downPayment, int termofLease, int leaseFee, double taxRate, double moneyFactor) {
+        this.name = name;
+        this.whichModel = whichModel;
+        this.age = age;
+        this.salary = salary;
+        this.totalCost = totalCost;
+        this.downPayment = downPayment;
+        this.termofLease = termofLease;
+        this.leaseFee = leaseFee;
+        this.taxRate = taxRate;
+        this.moneyFactor = moneyFactor;
+        depractionAmount = calculateDepreciation();
+        interestAmount = calculateInterest();
+
+
+}
 
 /*
  Create a method
@@ -38,6 +65,10 @@ public abstract class carLease {
 
  */
 
+    public int calculateDepreciation() {
+        return (totalCost - downPayment) / termofLease;
+    }
+
     /*
        calculateInterest
 
@@ -46,6 +77,10 @@ public abstract class carLease {
                 calculation is : total cost plus down payment multiply by money factor
 
      */
+    public double calculateInterest () {
+        return (totalCost + downPayment) * moneyFactor;
+    }
+
 
     /*
 
@@ -56,9 +91,18 @@ public abstract class carLease {
             depractionAmount + interestAmount * taxRate
 
      */
+    public double taxes () {
+        return depractionAmount + interestAmount * taxRate;
+
+    }
+
 
     /*
      getter for the (getSalary)
      */
+    public int getSalary() {
+        return salary;
 
+
+    }
 }
